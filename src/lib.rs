@@ -1,3 +1,4 @@
+use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
 use rayon::prelude::*;
 // Import the stemmer implementation from the rust-stemmers library
@@ -13,7 +14,7 @@ pub struct SnowballStemmer {
 #[pymethods]
 impl SnowballStemmer {
     #[new]
-    fn new(lang: &str) -> Self {
+    fn new(lang: &str) -> PyResult<Self> {
         let algorithm = match lang.to_lowercase().as_str() {
             "arabic" => Algorithm::Arabic,
             "danish" => Algorithm::Danish,
@@ -33,10 +34,15 @@ impl SnowballStemmer {
             "swedish" => Algorithm::Swedish,
             "tamil" => Algorithm::Tamil,
             "turkish" => Algorithm::Turkish,
-            _ => panic!("Unsupported language: {}", lang),
+            _ => {
+                return Err(PyValueError::new_err(format!(
+                    "Unsupported language: {}",
+                    lang
+                )))
+            }
         };
         let stemmer = Stemmer::create(algorithm);
-        SnowballStemmer { stemmer }
+        Ok(SnowballStemmer { stemmer })
     }
 
     #[inline(always)]
