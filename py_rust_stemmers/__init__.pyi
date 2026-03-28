@@ -1,4 +1,6 @@
-from typing import List, Sequence
+from typing import List, Sequence, TypeVar
+
+_S = TypeVar("_S", bound=str)
 
 class SnowballStemmer:
     """
@@ -28,7 +30,7 @@ class SnowballStemmer:
         """
         ...
 
-    def stem_words(self, inputs: Sequence[str]) -> List[str]:
+    def stem_words(self, inputs: List[_S]) -> List[str]:
         """
         Stem a list of words sequentially.
         
@@ -40,7 +42,7 @@ class SnowballStemmer:
         """
         ...
 
-    def stem_words_parallel(self, inputs: Sequence[str]) -> List[str]:
+    def stem_words_parallel(self, inputs: Sequence[_S]) -> List[str]:
         """
         Stem a list of words in parallel using Rayon.
         
