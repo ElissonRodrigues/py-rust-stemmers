@@ -1,7 +1,7 @@
 [project]
 name = "py_rust_stemmers"
 version = "0.1.5"
-description = "Fast and parallel snowball stemmer (fork with Python 3.14 support)"
+description = "Fast and parallel snowball stemmer"
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [{ name = "Qdrant", email = "info@qdrant.com" }]
