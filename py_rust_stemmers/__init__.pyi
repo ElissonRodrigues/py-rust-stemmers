@@ -1,4 +1,4 @@
-from typing import List, Sequence, TypeVar
+from typing import Iterable, List, TypeVar
 
 _S = TypeVar("_S", bound=str)
 
@@ -30,24 +30,24 @@ class SnowballStemmer:
         """
         ...
 
-    def stem_words(self, inputs: List[_S]) -> List[str]:
+    def stem_words(self, inputs: Iterable[_S]) -> List[str]:
         """
-        Stem a list of words sequentially.
+        Stem an iterable of words sequentially.
         
         Args:
-            inputs: A list of words to stem.
+            inputs: An iterable of words to stem.
         
         Returns:
             A list of stemmed words.
         """
         ...
 
-    def stem_words_parallel(self, inputs: Sequence[_S]) -> List[str]:
+    def stem_words_parallel(self, inputs: Iterable[_S]) -> List[str]:
         """
-        Stem a list of words in parallel using Rayon.
+        Stem an iterable of words in parallel using Rayon.
         
         Args:
-            inputs: A list of words to stem.
+            inputs: An iterable of words to stem.
         
         Returns:
             A list of stemmed words.
